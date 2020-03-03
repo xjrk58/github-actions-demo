@@ -1,7 +1,6 @@
 on:
-  push:
-    tags:
-      - 'v*'
+  milestone:
+    types: [closed]
 name: Create Release
 jobs:
   build:
@@ -26,8 +25,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ github.event.title}}
+          release_name: Release ${{ github.event.title }}
           body: ${{ steps.generate.outputs.release_notes }}
           draft: false
           prerelease: false
