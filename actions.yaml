@@ -1,0 +1,13 @@
+name: Nyan cat automated repository
+author: Grumpy cat
+description: This action will nyan your repository
+inputs:
+  hours:
+    description: Length of nyan cat video
+    required: false
+outputs:
+  link:
+    description: Nyan cat video URL
+runs:
+  using: 'node12'
+  main: 'nyan.js'

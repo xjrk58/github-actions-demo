@@ -1,0 +1,21 @@
+name: Run tests
+on:
+  pull_request:
+    branches:
+      - master
+    types: [ opened, reopened, ready_for_review ]
+  push:
+    branches: [ master ]
+jobs:
+  run-tests:
+    strategy:
+      matrix:
+        node: [ '10.x', '12.x' ]
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+            node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm test
